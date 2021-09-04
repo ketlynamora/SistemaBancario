@@ -18,7 +18,7 @@ namespace SistemaBancarioAPI.Models
     {
         public string Nome { get; set; }
         public string DtNascimento { get; set; }
-        public EnderecoViewModel Endereco { get; set; }
+
     }
 
     public class EnderecoViewModel

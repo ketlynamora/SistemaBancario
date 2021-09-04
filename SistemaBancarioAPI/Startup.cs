@@ -30,6 +30,7 @@ namespace SistemaBancarioAPI
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IContaService), typeof(ContaService));
+            services.AddScoped(typeof(ITitularService), typeof(TitularService));
             services.AddScoped(typeof(IContaRepository), typeof(ContaRepository));
             services.AddScoped(typeof(ITitularRepository), typeof(TitularRepository));
             services.AddScoped(typeof(IEnderecoRepository), typeof(EnderecoRepository));

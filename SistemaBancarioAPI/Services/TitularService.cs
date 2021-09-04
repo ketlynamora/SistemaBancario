@@ -33,21 +33,5 @@ namespace SistemaBancarioAPI.Services
             await _enderecoRepository.Atualizar(endereco);
         }
 
-        public async Task<bool> Remover(Guid id)
-        {
-            if (_titularRepository.ObterDadosTitular(id).Result.Contas.Any())
-                return false;
-
-            var endereco = await _enderecoRepository.ObterEnderecoPorTitular(id);
-
-            if (endereco != null)
-            {
-                await _enderecoRepository.Remover(endereco.Id);
-            }
-
-            await _titularRepository.Remover(id);
-            return true;
-
-        }
     }
 }

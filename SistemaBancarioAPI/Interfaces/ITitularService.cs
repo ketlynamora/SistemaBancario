@@ -11,6 +11,5 @@ namespace SistemaBancarioAPI.Interfaces
     {
         Task<bool> Adicionar(Titular titular);
         Task AtualizarEndereco(Endereco endereco);
-        Task<bool> Remover(Guid id);
     }
 }

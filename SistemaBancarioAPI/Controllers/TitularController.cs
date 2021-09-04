@@ -24,13 +24,11 @@ namespace SistemaBancarioAPI.Controllers
             _autoMapper = autoMapper;
         }
 
-        [HttpGet]
-        public IActionResult ObterTodos()
+        [HttpGet("GetAll")]
+        public async Task<IEnumerable<TitularViewModel>> GetAll()
         {
-            var titulares = _titularRepository.ObterTodos();
+            return _autoMapper.Map<IEnumerable<TitularViewModel>>(await _titularRepository.ObterTodos());
 
-            var titularViewModel = _autoMapper.Map<List<TitularViewModel>>(titulares);
-            return Ok(titularViewModel);
         }
 
         [HttpGet("{id:guid}/titular")]
@@ -74,26 +72,7 @@ namespace SistemaBancarioAPI.Controllers
             }
 
         }
-
-        [HttpDelete("{id:guid}")]
-        public async Task<ActionResult> Delete(Guid id)
-        {
-            try
-            {
-                var usuario = await _titularRepository.ObterDadosTitular(id);
-
-                if (usuario == null) return NotFound("Usuário não localizado");
-
-                await _titularService.Remover(id);
-
-                return Ok("Usuário e conta removidos");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro no método Delete. ", ex);
-            }
-
-        }
+        
     }
 }
 
