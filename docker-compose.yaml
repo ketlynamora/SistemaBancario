@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  banking-system-postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "Postgres2021!"
+    ports:
+      - "15432:5432"
+    volumes:
+      - /var/lib/postgresql/data
+    networks:
+      - banking-system-network
+      
+  banking-system-pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "ketlyn.dev@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2021!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - banking-system-postgres
+    networks:
+      - banking-system-network
+
+networks: 
+  banking-system-network:
+    driver: bridge
